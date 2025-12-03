@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Knewave&family=Zain:ital,wght@0,200;0,300;0,400;0,700;0,800;0,900;1,300;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ------------------ GLOBAL ------------------ */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: #0f162c;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    background-image: url(/Waitlist-Website/img/background.png);
+    background-size: cover;
+}
+
+/* ------------------ LOGO ------------------ */
+.logo {
+    display: flex;
+    align-items: center;
+    margin: 30px;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.logo-img {
+    height: 55px;
+    margin-right: 15px;
+}
+
+/* ------------------ TEXT BLOCK ------------------ */
+.text-block {
+    position: absolute;
+    top: 50%;
+    left: 80px;
+    transform: translateY(-50%);
+    z-index: 10;
+    max-width: 600px;
+}
+
+.text-block h1 {
+    font-size: 180px;
+    margin: 0;
+    line-height: 0.9;
+    letter-spacing: 0.1cm;
+    font-family: "Knewave", system-ui;
+    font-weight: 400;
+}
+
+.text-block h2 {
+    font-size: 45px;
+    margin: 10px 0 30px 0;
+    font-family: "Zain", sans-serif;
+    font-weight: 400;
+}
+
+/* ------------------ BUTTON ------------------ */
+.pre-btn {
+    padding: 12px 32px;
+    font-size: 24px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    background: linear-gradient(90deg, #7b2ff7, #f107a3);
+    color: white;
+    font-family: "DM Serif Text", serif;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pre-btn:hover {
+    transform: scale(1.06);
+    box-shadow: 0 12px 30px rgba(123, 47, 247, 0.35);
+}
+
+/* ------------------ FLOAT IMAGE (MOBILE MOCKUP) ------------------ */
+.float-image {
+    position: absolute;
+    bottom: 11vh;
+    right: 8vw;
+    width: 300px;
+    border-radius: 40px;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease-out;
+}
+
+.float-image img {
+    width: 100%;
+    height: 100%;
+    border-radius: 40px;
+}
+
+/* Depth / Side Lighting */
+.float-image::before,
+.float-image::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 40px;
+    background: linear-gradient(145deg, rgba(14, 165, 167, 0.25), rgba(6, 182, 212, 0.25));
+    transform: translateZ(-20px) rotateY(10deg);
+    opacity: 0.7;
+    z-index: -1;
+}
+
+.float-image::after {
+    transform: translateZ(-20px) rotateY(-10deg);
+}
+
+/* ------------------ FOOTER ------------------ */
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #000;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    padding: 5px 0;
+}
+
+footer p {
+    padding-right: 20px;
+}
+
+footer a {
+    color: #7b2ff7;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+footer a:hover {
+    color: #f107a3;
+}
+
+/* ------------------ RESPONSIVE FIXES ------------------ */
+@media (max-width: 1200px) {
+    .text-block h1 {
+        font-size: 90px;
+    }
+
+    .text-block h2 {
+        font-size: 40px;
+    }
+
+    .float-image {
+        width: 300px;
+    }
+}
+
+@media (max-width: 900px) {
+    .text-block {
+        left: 40px;
+    }
+
+    .text-block h1 {
+        font-size: 70px;
+    }
+
+    .text-block h2 {
+        font-size: 32px;
+    }
+
+    .float-image {
+        width: 260px;
+        right: 5vw;
+    }
+}
+
+@media (max-width: 650px) {
+    body {
+        overflow: visible;
+    }
+
+    .text-block {
+        position: relative;
+        top: 30px;
+        left: 20px;
+        transform: none;
+    }
+
+    .text-block h1 {
+        font-size: 55px;
+    }
+
+    .text-block h2 {
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+
+    .pre-btn {
+        font-size: 20px;
+    }
+
+    .float-image {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        margin: 40px auto 0;
+        width: 240px;
+    }
+}
