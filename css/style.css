@@ -8,7 +8,7 @@ body {
     margin: 0;
     padding: 0;
     background: #0f162c;
-    overflow: hidden;
+    overflow: hidden; /* Desktop should not scroll */
     font-family: 'Poppins', sans-serif;
     color: white;
     background-image: url(/Waitlist-Website/img/background.png);
@@ -83,15 +83,18 @@ body {
     perspective: 1000px;
     transform-style: preserve-3d;
     transition: transform 0.1s ease-out;
+
+    /* FIX: Never allow glow layers to spill out */
+    overflow: hidden;
 }
 
 .float-image img {
     width: 100%;
-    height: 100%;
     border-radius: 40px;
+    display: block;
 }
 
-/* Depth / Side Lighting */
+/* Depth / Lighting */
 .float-image::before,
 .float-image::after {
     content: "";
@@ -101,14 +104,20 @@ body {
     width: 100%;
     height: 100%;
     border-radius: 40px;
-    background: linear-gradient(145deg, rgba(14, 165, 167, 0.25), rgba(6, 182, 212, 0.25));
-    transform: translateZ(-20px) rotateY(10deg);
-    opacity: 0.7;
+
+    background: linear-gradient(145deg,
+        rgba(14, 165, 167, 0.25),
+        rgba(6, 182, 212, 0.25)
+    );
+
+    /* FIX: Remove transforms that cause blue band */
+    transform: none;
+    opacity: 0.45;
     z-index: -1;
 }
 
 .float-image::after {
-    transform: translateZ(-20px) rotateY(-10deg);
+    opacity: 0.25;
 }
 
 /* ------------------ FOOTER ------------------ */
@@ -141,70 +150,46 @@ footer a:hover {
     color: #f107a3;
 }
 
-/* ------------------ RESPONSIVE FIXES ------------------ */
-@media (max-width: 1200px) {
-    .text-block h1 {
-        font-size: 90px;
-    }
-
-    .text-block h2 {
-        font-size: 40px;
-    }
-
-    .float-image {
-        width: 300px;
-    }
-}
-
-@media (max-width: 900px) {
-    .text-block {
-        left: 40px;
-    }
-
-    .text-block h1 {
-        font-size: 70px;
-    }
-
-    .text-block h2 {
-        font-size: 32px;
-    }
-
-    .float-image {
-        width: 260px;
-        right: 5vw;
-    }
-}
-
-@media (max-width: 650px) {
-    body {
-        overflow: visible;
+/* ------------------ MOBILE SCROLL FIX ------------------ */
+@media (max-width: 850px) {
+    html, body {
+        overflow-y: auto !important;
+        overflow-x: hidden;
+        height: auto;
+        background-image: url(/Waitlist-Website/img/background-responsive.png);
     }
 
     .text-block {
         position: relative;
-        top: 30px;
+        top: 20px;
         left: 20px;
         transform: none;
+        margin-bottom: 40px;
+        max-width: 300px;
     }
 
     .text-block h1 {
-        font-size: 55px;
+        font-size: 95px;
     }
 
     .text-block h2 {
-        font-size: 28px;
-        margin-bottom: 20px;
-    }
-
-    .pre-btn {
-        font-size: 20px;
+        font-size: 36px;
+        margin-top: 0;
     }
 
     .float-image {
         position: relative;
         right: auto;
-        bottom: auto;
-        margin: 40px auto 0;
-        width: 240px;
+        bottom: -3.5vh;
+        margin: 20px auto 80px;
+        width: 260px;
+
+        /* Keep it clipped */
+        overflow: hidden;
+    }
+
+    footer {
+        position: relative;
+        margin-top: 40px;
     }
 }
